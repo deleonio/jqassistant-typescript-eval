@@ -1,0 +1,95 @@
+{
+  "packages": [
+    {
+      "identifier": "lib-architecture",
+      "name": "ArchLib"
+    },
+    {
+      "identifier": "app-rechnen",
+      "name": "Rechnen"
+    }
+  ],
+  "interfaces": [
+    {
+      "package": "lib-architecture",
+      "identifier": "generic-component",
+      "name": "GenericComponent"
+    },
+    {
+      "package": "lib-architecture",
+      "identifier": "generic-component",
+      "name": "GenericComponent"
+    },
+    {
+      "package": "lib-architecture",
+      "identifier": "generic-component",
+      "name": "GenericComponent"
+    }
+  ],
+  "classes": [
+    {
+      "package": "lib-architecture",
+      "identifier": "react-component",
+      "abstract": true,
+      "name": "ReactComponent",
+      "type": "Component"
+    },
+    {
+      "package": "lib-architecture",
+      "abstract": true,
+      "identifier": "abstract-controller",
+      "name": "AbstractController",
+      "type": "Controller"
+    },
+    {
+      "package": "app-rechnen",
+      "identifier": "rechnen-component",
+      "abstract": false,
+      "name": "RechnenComponent",
+      "type": "Component"
+    },
+    {
+      "package": "app-rechnen",
+      "identifier": "rechnen-controller",
+      "abstract": false,
+      "name": "RechnenController",
+      "type": "Controller"
+    },
+    {
+      "package": "app-rechnen",
+      "identifier": "rechnen-controller",
+      "abstract": false,
+      "name": "RechnenController",
+      "type": "Controller"
+    },
+    {
+      "package": "app-rechnen",
+      "identifier": "rechnen-service",
+      "abstract": false,
+      "name": "AufgabenService",
+      "type": "Service"
+    }
+  ],
+  "relations": [
+    {
+      "type": "extends",
+      "from": "rechnen-component",
+      "to": "react-component"
+    },
+    {
+      "type": "implements",
+      "from": "rechnen-component",
+      "to": "gerneric-component"
+    },
+    {
+      "type": "extends",
+      "from": "rechnen-component",
+      "to": "rechnen-controller"
+    },
+    {
+      "type": "use",
+      "from": "rechnen-controller",
+      "to": "aufgaben-service"
+    }
+  ]
+}
