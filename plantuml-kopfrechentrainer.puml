@@ -1,0 +1,102 @@
+@startuml
+
+package "ArchLib" {
+    interface "GenericComponent" {}
+    class "AbstractController" {}
+    class "ReactComponent" {}
+}
+
+package "rechnen.component.tsx" {
+class "RechnenComponent" {
++ctrl: "RechnenController": RechnenController
+-toggle
+-formRef
+-isModalVisible
+-isSubmitted
+-isEingabeDisabled
++componentDidMount(): void
+-onKeyUp(event: unknown): void
+-onReset(): [MISSING_RETURN_TYPE_ANNOTATION]
++render(): JSX.Element
+}
+}
+
+package "rechnen.controller.ts" {
+class "RechnenController" {
+-aufgabenService: "AufgabenService"
+-storageService: "StorageService"
++aufgabe: "RechenAufgabe"
++ergebnisText
++ergebnisColor
++constructor()
++createAufgabe(): void
+-updateTextAndColor(): void
++storeResult(answer: number): void
++getRightWrongSum(results: Array<"AufgabeStore">): 
++getStatistic(): 
++getOrderedResults(): Array<Array<Array<Array<"AufgabeStore">>>>
++getDayProgress(): 
++incDayLimit(incLimit: number): void
+}
+
+interface AufgabeStore {}
+}
+
+package "aufgaben.service.ts" {
+abstract class "RechenAufgabe" {
++sign: string
++values: Array<number>
++result: number | 
++constructor(values: Array<number>)
+
+}
+class "RechenAufgabeAddition" {
++sign
++getErgebnis(): number
+}
+class "RechenAufgabeSubtraktion" {
++sign
++getErgebnis(): number
+}
+class "RechenAufgabeMultiplikation" {
++sign
++getErgebnis(): number
+}
+class "AufgabenService" {
+-storageService: "StorageService"
++aufgabe: "RechenAufgabe"
+[MISSING_METHOD_DEFINITION_ACCESSIBILTY]constructor()
+-getRandomInt(max: number): [MISSING_RETURN_TYPE_ANNOTATION]
+-getProfil(): 
+-patchAufgabe(rechenAufgabe: ): "RechenAufgabe"
+-newAufgabe(): "RechenAufgabe"
++createAufgabe(): "RechenAufgabe"
+}
+}
+
+package "storage.service.ts" {
+class "StorageService" {
+-memoryStorage: "INameToValueMap"
+-namespace: string
++constructor(namespace: [MISSING_PARAMETER_TYPE_ANNOTATION])
++setItem(key: string, value: unknown): void
++getItem(key: string): "T"
++removeItem(key: string): void
+-restore(): void
+-store(): void
+}
+}
+RechnenComponent -u-|> ReactComponent
+RechnenComponent .u.> GenericComponent
+RechnenComponent .. RechnenController
+RechnenController --|> AbstractController
+RechnenController .d. AufgabenService
+RechnenController .d. StorageService
+RechnenController .. RechenAufgabe
+RechnenController .. AufgabeStore
+RechenAufgabeAddition --|> RechenAufgabe
+RechenAufgabeSubtraktion --|> RechenAufgabe
+RechenAufgabeMultiplikation --|> RechenAufgabe
+AufgabenService .d. StorageService
+AufgabenService .. RechenAufgabe
+@enduml
